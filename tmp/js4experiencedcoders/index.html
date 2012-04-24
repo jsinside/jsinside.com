@@ -66,7 +66,7 @@
 	<article data-markdown>
 		### Well this is all cool, but you are here for one thing
 
-		# to learn *Javascript* !
+		# Goal: To Learn *Javascript* !
 	</article>
 	<article data-markdown>
 		### So Lets learn *javascript*!
@@ -297,7 +297,7 @@
 **		Functions							**
 ******************************************************************************* -->
 	<article data-markdown>
-		# Functions
+		# Basics: *Functions*
 	</article>
 	<article data-markdown>
 		### functions
@@ -344,6 +344,122 @@
 		```
 		The same as the first code.
 	</article>
+<!-- *****************************************************************************
+**		Console.* API							**
+** good slide http://tbassetto.github.com/chrome-dev-tools-tips-and-tricks/	**
+******************************************************************************* -->
+	<article data-markdown>
+		# Console.* API
+	</article>
+	<article data-markdown>
+		### What is console.* API
+		
+		#### Facts
+		* Started in [firebug](https://getfirebug.com/)
+		* now a defacto standard in js
+		* doc [here](http://getfirebug.com/wiki/index.php/Command_Line_API)
+
+		#### Use
+		* nice for debugging: console.assert()
+		* for logging: console.error/warn/log()
+		* for benching: console.profile()
+	</article>
+	<article data-markdown>
+		### Console API: *logging*
+		
+		Log by severity levels
+		
+		```
+		console.log("foobar");
+		```
+		
+		For Warning
+
+		```
+		console.warn("foobar");
+		```
+
+		For Error
+		
+		```
+		console.error("foobar");
+		```
+		
+		*Try It* in the console. see .info/debug too
+	</article>
+	<article data-markdown>
+		### Console API: *Logging* with console.dir()
+		
+		To inspect a complex object, you may need to inspect it
+		
+		```
+		var obj = {
+			foo	: "bar"
+		};
+		console.dir(obj);
+		```
+
+		*Try It* in the console
+		
+		```
+		{ foo: 'bar' }
+		```
+		
+		but interactive, so you can dig as deep as you want.
+	</article>
+	<article data-markdown>
+		### Console API: *Benchmark* with console.time
+
+		```	
+		var sum = 0;
+		console.time('foo');
+		for( var i=0; i< 10000000; i++){
+			sum	+= i;
+		}
+		console.timeEnd('foo');
+		```
+
+		*Try it*  in the console.
+
+		```
+		foo: 1518ms
+		```
+	</article>
+	<article data-markdown>
+		### Console API: *Benchmark* with console.profile
+		
+		```	
+		var sum = 0;
+		console.profile('foo');
+		for( var i=0; i< 1000000; i++){
+			sum	+= i;
+		}
+		console.profileEnd('foo');
+		```
+
+		*Try it*  in the console.
+		
+		* Be sure to Check **profile** tab
+		* More details than console.time()
+		  * garbage collection
+		  * info splitted by functions
+	</article>
+	<article data-markdown>
+		### Console API: *Debugging* with console.assert()
+		
+		#### Check your assertions are correct
+		* typically for function parameters type checking
+		
+		```
+		console.assert(options instanceof String);
+		```
+		
+		*Warning*: just a display, don't stop excecution.
+	</article>
+
+<!-- *****************************************************************************
+**		THE END								**
+******************************************************************************* -->
 	<article data-markdown>
 		# That's all folks
 		
@@ -389,9 +505,9 @@
 			//console.log("leadingws", leadingws)
 			var regex	= new RegExp('\\n[ \\t]{' + leadingws + '}','g');
 			var md		= text.replace(regex,'\n');
-			console.log("pre md", md);
+			//console.log("pre md", md);
 			html      = (new Showdown.converter()).makeHtml(md);
-			console.log("post html", html);
+			//console.log("post html", html);
 	
 			// to support prettyprint
 			html		= html.replace(/<code><br \/>/g,'<pre class="prettyprint">');
@@ -424,6 +540,8 @@
 //  * standalone, no compilation, no need to commit all to markdown
 //* https://github.com/vinyll/html5-slides-markdown does well but not proper target
 //  * nice on how to make slides in markdown tho
-	</script>
+//
+// http://tbassetto.github.com/chrome-dev-tools-tips-and-tricks/#8
+	</script> 
 </body>
 </html>
