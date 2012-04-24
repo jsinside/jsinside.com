@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS for experienced developers</title>
+	<base target=”_blank” />
+	<meta charset='utf-8'/>
+	<script src='slides.js'></script>
+</head>
+
+<body style='display: none'>
+	<style>
+	[data-markdown] em {
+		color		: orange;
+		font-style	: normal;
+		font-weight	: bolder;
+		
+	}
+	</style>
+	<section class='slides layout-regular template-default'>
+
+<!-- ****************************************************************************
+		Talk Introduction
+********************************************************************************* -->
+	<article data-markdown>
+		
+		# Javascript for Experienced Coders
+		
+		## but in another language
+		
+		Jerome Etienne
+	</article>
+	<article data-markdown>
+		
+		<img style="float:right" src='jetienne-avatar.jpg' />
+
+		### Who am i
+
+		* coder, speaker, trainer
+		* trainer at [JSInside](http://jsinside.com)
+		* Javascript, Node.js, WebGL and other HTML5 games stuff
+		
+		#### Learning Three.js
+		* "WebGL for dummies" blog that i write.
+		
+		#### Contacts
+		* [github](http://github.com/jeromeetienne) [twitter](http://twitter.com/jerome_etienne) [gplus](https://plus.google.com/102848659911729905069/posts)
+	</article>
+
+
+<!-- ****************************************************************************
+		presentation
+********************************************************************************* -->
+	<article data-markdown>
+		## So you know how to code ?
+	</article>
+	<article data-markdown>
+		### yeah ? like what ?
+
+		### Which language do you code ?
+		
+		* python or ruby
+		* what ? php ?
+		* why not perl while you are at it ?
+		* or even c/c++ ...
+	</article>
+	<article data-markdown>
+		### Well this is all cool, but you are here for one thing
+
+		# to learn *Javascript* !
+	</article>
+	<article data-markdown>
+		### So Lets learn *javascript*!
+		* Boom!...
+
+		#### **Good News!!**
+		* You are in the good room :)
+
+		#### **Bad News ?**
+		* This gonna be *painfull*...
+	</article>
+	<article data-markdown>
+		## Not even scared ? 
+	</article>
+	<article data-markdown>
+		### Well let's see...		
+		
+		#### *Javascript* as a language...
+		
+		* is *not clean*
+		* is *not usual*
+		* is *not consistent*
+		* is *not easy to learn :)*
+	</article>
+	<article data-markdown>
+		### WTF.js - a javascript chamber of horror
+		
+		* [wtfjs.com](http://wtfjs.com/)
+		* made by [@brianleroux](https://twitter.com/#!/brianleroux)
+		#### Javascript is so horrible
+		* people do entire site to laugth at it
+	</article>
+	<article data-markdown>
+		### WTF.js featured samples
+		
+		#### "all your commas are belong to Array" - [read more](http://wtfjs.com/2011/02/11/all-your-commas-are-belong-to-Array)
+
+		```
+		new Array([],null,undefined,null) == ",,,"; // true
+		```
+		
+		Yeah seriously 
+	</article>
+	<article data-markdown>
+		### WTF.js featured samples
+		
+		#### "min less max" - [read more](http://wtfjs.com/2011/06/27/min-less-max)
+
+		```
+		Math.max();
+		// -Infinity
+		```
+
+		```
+		Math.min();
+		// Infinity
+		```
+		
+		```
+		Math.min() < Math.max();
+		// false
+		```
+		
+		Why not...
+	</article>
+	<article data-markdown>
+		### WTF.js featured samples
+		
+		#### "i am myself but also not myself" - [read more](http://wtfjs.com/2010/11/15/i-am-myself-but-also-not-myself)
+
+		```
+		var foo = [0];
+		console.log(foo == !foo);
+		// "true"
+		console.log(foo == foo);
+		// "true"
+		```
+		
+		Javascript is quantic in a way...
+		
+		*true* **and** *false* at the same time like [Schrödinger's cat](http://en.wikipedia.org/wiki/Schr%C3%B6dinger's_cat)
+	</article>
+	<article data-markdown>
+		## ok you got me, this is an horror :( 
+	</article>
+	<article data-markdown>
+		## why should i learn it then ?
+	</article>
+	<article data-markdown>
+		# Why Learning *Javascript*
+	</article>
+	<article data-markdown>
+		### JS isnt all bad
+		
+		#### Speed
+		* It is rather fast now
+		* considering its a scripting language
+		* mainly due to v8 arrival - it launched the race
+
+		#### You get used to it
+		* Step1: *know the "Good Parts"* - [read more](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742)
+		* Step2: *to avoid the "Bad Parts"*
+		* Step3: Then it is ok, so enjoy :)
+	</article>
+	<article data-markdown>
+		### JS is everywhere
+		
+		#### in *every web browser*
+		* It is the scripting language inside webpage
+		
+		#### Consequences
+		* so all browsers fight to get the best vm
+		* You need to know some of it to write web page.
+		* so every webdev has to learn javascript
+		* non-webdev still has to know some of it, as webpage is so everywhere
+	</article>
+	<article data-markdown>
+		### JS is everywhere (continued)
+		
+		#### even *on server* now
+
+		* was existing before but never took off
+		  * e.g [rhino](http://www.mozilla.org/rhino/)
+		
+		#### Arrival of [node.js](http://nodejs.org)
+		* based on v8
+		* no multi-threading
+		* all async for efficiency
+		* demonstrated impressive performance
+		  * in memory and cpu
+	</article>
+	<article data-markdown>
+		### So why learning *Javascript*
+		
+		#### 1. It is everywhere
+		* on all browsers
+		* on server
+
+		#### 2. It isn't that bad
+		* You get used to the quircks
+	</article>
+	<article data-markdown>
+		## ok i will try...
+	</article>
+
+	<article data-markdown>
+		# Lets Learn *Javascript*
+	</article>
+<!-- *****************************************************************************
+**		Variables							**
+******************************************************************************* -->
+	<article data-markdown>
+		# Basics: *Variables*
+	</article>
+	<article data-markdown>
+		### Declaration
+		Plain declaration. set the variable to ```undefined```
+		```
+		var foo;
+		```
+		Declaration and assignment
+		```
+		var foo = 42;
+		```
+		Queue severals, like c
+		```
+		var foo = 42, bar;
+		```
+	</article>
+	<article data-markdown>
+		### types
+
+		* *var* accepts any type of variable
+		* javascript is weak typing
+		
+		```
+		var a;
+		a = "foobar";
+		a = 99;
+		```
+		All is ok
+	</article>
+	<article data-markdown>
+		### types number
+
+		* All number are [float64](http://en.wikipedia.org/wiki/Double-precision_floating-point_format)
+		  * significands precision 53-bits
+		  * beyond this, integers go south
+		
+		#### So No Integer... Nowhere
+		* Need more ? well do it yourself bit-by-bit
+		* scary ? well some did it tho [link](https://github.com/silentmatt/javascript-biginteger)
+		* twitter did with string when they ran out of IDs
+	</article>
+
+<!-- *****************************************************************************
+**		Loop								**
+******************************************************************************* -->
+	<article data-markdown>
+		# Basics: *Loops*
+	</article>
+	<article data-markdown>
+		### Loop
+		
+		```
+		for(var i = 0; i < 10; i++){
+			console.log("i=", i);
+		}
+		```
+		
+		```
+		var i = 10;
+		while( i-- > 0 ){
+			console.log("i=", i);
+		}
+		```
+	</article>
+	<article data-markdown>
+		### iterate over property
+		
+		```
+		for(var prop in obj){
+			console.log("property: ", prop);
+		}
+		```
+	</article>
+<!-- *****************************************************************************
+**		Functions							**
+******************************************************************************* -->
+	<article data-markdown>
+		# Functions
+	</article>
+	<article data-markdown>
+		### functions
+
+		```
+		function foo(){
+			return "bar";
+		}
+		```
+		may have a name or not. The above is called ```foo```.
+		
+		```
+		function(){ return "bar"; }
+		```
+		the one is *anonymous*.
+	</article>
+	<article data-markdown>
+		### return value
+		
+		returning a value
+		
+		```
+		function foo(){
+			var result = "bar";
+			return result;
+		}
+		```
+	</article>
+	<article data-markdown>
+		### without return is ok
+		
+		```
+		function foo(){
+			console.log("bar");
+		}
+		```
+		
+		No return is the same as returning ```undefined```
+		```
+		function foo(){
+			console.log("bar");
+			return undefined;
+		}
+		```
+		The same as the first code.
+	</article>
+	<article data-markdown>
+		# That's all folks
+		
+		### Question ?
+		
+		Jerome Etienne
+	</article>
+
+	<script>
+	// ==UserScript==
+	// @name Use Markdown, sometimes, in your HTML.
+	// @author Paul Irish <http://paulirish.com/>
+	// @link http://git.io/data-markdown
+	// @match *
+	// ==/UserScript==
+	
+	
+	// If you're not using this as a userscript just delete from this line up. It's cool, homey.
+	
+	(function markdownSlideToHtml(){
+	  
+		if (!window.Showdown){
+			var scr		= document.createElement('script');
+			scr.onload	= markdownSlideToHtml;
+			scr.src		= 'https://raw.github.com/github/github-flavored-markdown/gh-pages/scripts/showdown.js';
+			document.body.appendChild(scr);
+			return;
+		}
+	
+		[].forEach.call(document.querySelectorAll('[data-markdown]'), function fn(elem){
+			// strip leading whitespace so it isn't evaluated as code
+			//var text      = elem.textContent.replace(/\n\s*\n/g,'\n');
+			// jerome- to have better support of html within markdown
+			var text      = elem.innerHTML;
+			//console.log("origin innerHTML", text.split('\n'));
+			// remove all blanks lines
+			//text		= text.replace(/\n\s*\n/g,'\n');
+			//console.log("step text", text)
+			// set indentation level so your markdown can be indented within your HTML
+			var matches	= text.match(/^\n([ \t]*)/);
+			var leadingws	= matches[1].length;
+			//console.log("first line", matches)
+			//console.log("leadingws", leadingws)
+			var regex	= new RegExp('\\n[ \\t]{' + leadingws + '}','g');
+			var md		= text.replace(regex,'\n');
+			console.log("pre md", md);
+			html      = (new Showdown.converter()).makeHtml(md);
+			console.log("post html", html);
+	
+			// to support prettyprint
+			html		= html.replace(/<code><br \/>/g,'<pre class="prettyprint">');
+			html		= html.replace(/<br \/><\/code>/g,'</pre>');
+			// unescape [><]
+			html		= html.replace(/&amp;gt;/g,'>');
+			html		= html.replace(/&amp;lt;/g,'<');
+			//console.log("escaped html", html);
+		  
+			// here, have sum HTML
+			elem.innerHTML = html;
+		});
+		// callback prettyprint to highlight code found in markdown
+		prettyPrint();
+	}());
+
+//* http://jsclassroom.com
+//* http://jscoaches.com
+//* http://html5coaches.com
+//* http://jsuni.com
+//* http://javascriptuni.com
+//
+//prefix: js html5 javascript
+//
+//suffix: school classroom univesity academy class education 
+//
+//
+//* https://github.com/hakimel/reveal.js/issues/15 reveal.js in markdown
+//  * do the same for html5slide
+//  * standalone, no compilation, no need to commit all to markdown
+//* https://github.com/vinyll/html5-slides-markdown does well but not proper target
+//  * nice on how to make slides in markdown tho
+	</script>
+</body>
+</html>
