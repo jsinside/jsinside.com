@@ -15,6 +15,9 @@
 		font-weight	: bolder;
 		
 	}
+	[data-markdown] h3 {
+		font-size	: 180%;
+	}
 	</style>
 	<section class='slides layout-regular template-default'>
 
@@ -56,7 +59,7 @@
 	<article data-markdown>
 		### yeah ? like what ?
 
-		### Which language do you code ?
+		#### Which language do you code ?
 		
 		* python or ruby
 		* what ? php ?
@@ -64,7 +67,9 @@
 		* or even c/c++ ...
 	</article>
 	<article data-markdown>
-		### Well this is all cool, but you are here for one thing
+		### Well this is all cool
+
+		#### but you are here for one thing
 
 		# Goal: To Learn *Javascript* !
 	</article>
@@ -79,7 +84,7 @@
 		* This gonna be *painfull*...
 	</article>
 	<article data-markdown>
-		## Not even scared ? 
+		## Not even scared. 
 	</article>
 	<article data-markdown>
 		### Well let's see...		
@@ -327,7 +332,7 @@
 		```
 	</article>
 	<article data-markdown>
-		### without return is ok
+		### No Return is OK
 		
 		```
 		function foo(){
@@ -343,6 +348,353 @@
 		}
 		```
 		The same as the first code.
+	</article>
+<!-- *****************************************************************************
+**		Class								**
+******************************************************************************* -->
+	<article data-markdown>
+		# *Object Class*
+	</article>
+	<article data-markdown>
+		### Meta
+		
+		* private by closure
+		* no protected
+		* if cant do private, declare in public with a _ suffix
+		  * thus by convention, other parts of the code know they should not touch
+	</article>
+	<article data-markdown>
+		### What we gonna see ?
+		
+		* class declaration
+		* class instanciation
+		* how to handle the access level
+		  * aka public/protected/private
+		* how to handle inheritance
+	</article>
+	<article data-markdown>
+		### Various Alternatives
+		
+		#### Alternatives to do class in js
+		* Method *added to .prototype*
+		* Method *Using a function*
+		* Method *Using a object literal*
+
+		#### you can even mix them
+		* We will focus on *added to .prototype*
+		* It is the most scalable, imo
+		* recommended by google - [link](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#Method_definitions)
+	</article>
+<!-- *****************************************************************************
+**		Class: Added to .prototype					**
+******************************************************************************* -->
+	<article data-markdown>
+		## Ok... so let's get started
+	</article>
+	<article data-markdown>
+		# Class with *Added to .prototype*
+	</article>
+	<article data-markdown>
+		### First, Just a constructor
+		
+		#### Declaration
+		```
+		function aClass(aParam){
+			console.log("aParam", aParam);
+		}
+		```
+		#### Usage
+		```
+		var instance = new aClass("foobar");
+		```
+		
+		Rather simple, hey ?
+	</article>
+	<article data-markdown>
+		### Lets add some variables
+		
+		#### Declaration
+		```
+		function aClass(aParam){
+			this._aPrivateVariable	= 99;
+			// no protected... use the _ prefix ?
+			this.aPublicVariable	= "red";
+		}
+		```
+		#### Usage
+		```
+		var instance = new aClass("foobar");
+		console.log(instance.aPublicVariable);
+		// => "red"
+		console.log(instance._aPrivateVariable);
+		// => "99" works... but the _ prefix show you should not
+		```
+	</article>
+	<article data-markdown>
+		### Now adding some Function
+		
+		#### Declaration
+		```
+		function aClass(){}
+		aClass.prototype._aPrivateFunction	= function(){
+			return "OnlyForMe";
+		}
+		aClass.prototype.aPublicFunction	= function(){
+			return "ForEverybodyToSee";
+		}
+		```
+		#### Usage
+		```
+		var instance = new aClass();
+		console.log(instance.aPublicFunction()); // => "ForEverybodyToSee"
+		console.log(instance._aPrivateFunction());
+		// => "OnlyForME" works... but the _ prefix show you should not
+		```
+	</article>
+<!-- *****************************************************************************
+**		Class: Example							**
+******************************************************************************* -->
+	<article data-markdown>
+		## ok ok, lets do an example
+	</article>
+	<article data-markdown>
+		### Lets create a Class
+		
+		#### Classes we gonna do
+		* a class *cat*
+		
+		#### Method
+		* .miaou(): display 'miaou, im hungry' if it is hungry
+		  * display only 'miaou' otherwise
+		* .eat(): make the cat eat
+	</article>
+	<article data-markdown>
+		# Go head.... i wait
+	</article>
+	<article data-markdown>
+		### Possible Solution
+		
+		#### Declaration
+		```
+		function Cat(aParam){
+			this._hasEaten	= false;
+		}
+		Cat.prototype.eat	= function(){
+			this._hasEaten	= true;
+			console.log("thanks");
+		}
+		Cat.prototype.miaou	= function(){
+			console.log("miaaou", this._hasEaten ? ", im hungry" : "");
+		}
+		```
+	</article>
+	<article data-markdown>
+		### Possible Solution
+		
+		#### Usage
+		```
+		var cat = new Cat();
+		cat.miaou();	// => "miaaou, im hungry"
+		cat.eat();	// => "thanks"
+		cat.miaou();	// => "miaaou"
+		```
+	</article>
+<!-- *****************************************************************************
+**		Class: inheritance						**
+******************************************************************************* -->
+	<article data-markdown>
+		## Ok for the basic.. inheritance ?
+	</article>
+	<article data-markdown>
+		### Inheritance of Classes
+		
+		#### Classes we gonna do
+		* a class *cat*
+		* a class *kitty* which inherits from *cat*
+		* why ? because cats are cute ? :)
+	</article>
+	<article data-markdown>
+		### Inheritance by the examples
+		
+		#### Classes we gonna do
+		* a class *cat*
+		* a class *kitty* which inherits from *cat*
+		* why ? because cats are cute ? :)
+		
+		#### Show dont tell
+	</article>
+	<article data-markdown>
+		### First the class *cat*
+		
+		```
+		function Cat(){
+		}
+		// function to overload
+		Cat.prototype.miaou	= function(){
+			console.log("miiiiaaaoooo");
+		}
+		// function to inherit
+		Cat.prototype.isACat	= function(){
+			return true;
+		}
+		```
+		
+		```
+		var cat = new Cat();
+		cat.miaou();	// => "miiiiaaaoooo";
+		cat.isACat();	// => true;
+		```
+	</article>
+	<article data-markdown>
+		### Second the class *kitty*
+		
+		```
+		function Kitty(){
+		}
+		Kitty.prototype.miaou	= function(){
+			console.log("cutter miiiiaaaoooo");
+		}
+		```
+		
+		```
+		var kitty = new Kitty();
+		kitty.miaou();	// => "cutter miiiiaaaoooo";
+		```
+		
+		**WAIT**!! Where is the inheritance ?!?
+		```
+		kitty.isACat();	// => Error "no method 'isACat'";
+		```
+	</article>
+	<article data-markdown>
+		### how *kitty* inherits from *cat*
+		
+		#### To add just after Kitty contructor
+		```
+		Kitty.prototype = new Cat();
+		Kitty.prototype.constructor = Kitty;
+		```
+		
+		This is it. *All Done*		
+
+		```
+		var kitty = new Kitty();
+		kitty.miaou();	// => "cutter miiiiaaaoooo";
+		kitty.isACat();	// => true;
+		```
+		
+		so **.isACat()* has been **inherited** !!!
+	</article>
+	<article data-markdown>
+		## can i check that programatically ?
+	</article>
+	<article data-markdown>
+		### Lets check the type
+		
+		* This is *important*
+		
+		#### For Sanity Check
+		```
+		console.assert(myParam instanceof myClass)
+		```
+
+		#### For Polymorphism
+		* myParam may be a **myClass** or some other types 
+
+		```
+		if(myParam instanceof myClass){
+			// do something...
+		}else{
+			// do other things...
+		}
+		```
+	</article>
+	<article data-markdown>
+		### Lets check the type (continued)
+		
+		```
+		var obj = new Cat();
+		console.assert(obj instanceof Cat);	// => true
+		console.assert(obj instanceof Kitty);	// => false
+		```
+
+		```
+		var obj = new Kitty();
+		console.assert(obj instanceof Cat);	// => true
+		console.assert(obj instanceof Kitty);	// => true
+		```
+	</article>
+	<article data-markdown>
+		## What about destructors ?
+	</article>
+	<article data-markdown>
+		### Destructor ?
+		
+		* no destructor in js
+		* if you need one, do an explicit call
+		
+		#### Possibility
+		* create a .destroy() function which act as destructor
+		* Have the caller to call it when it no more use it
+	</article>
+	<article data-markdown>
+		### Destructor ? (example)
+		
+		#### Declaration
+		```
+		function aClass(){
+			this.timerId	= setTimeout(function(){
+				console.log("timer expired");
+			}, 3000);
+		}
+		aClass.prototype.destroy	= function(){
+			clearTimeout(this.timerId)
+		};
+		```
+		#### Usage
+		```
+		var instance = new aClass();
+		// do something which last less than 3000ms
+		instance.destroy();
+		```
+	</article>
+	<article data-markdown>
+		# Alternatives for Class
+	</article>
+	<article data-markdown>
+		### Method: *Using a function*
+
+		* **PRO:** short, atomic
+		* **CON:** private by convention only
+		* **CON:** non scalable for large class
+		  * closure tends to become messy
+
+		```
+		function myClass(params){
+			var myPrivate = 99;
+			this.myPublicVar = "red";
+			this.myPublicFunction = function() {
+				return this.params + ' ' + myProvate + this.myPublicVar;
+			};
+		}
+		```
+	</article>
+	<article data-markdown>
+		### Method: *Using object literals*
+
+		* **PRO:** short, clear
+		* **CON:** no constructor
+		* **CON:** private by convention only
+
+		```
+		var apple = {
+			_myPrivate	: "macintosh",
+			myPublicVar	: "red",
+			myPublicFunction: function () {
+				return this.params + ' ' + this._myPrivate + this.myPublicVar;
+			}
+		};
+		```		
 	</article>
 <!-- *****************************************************************************
 **		Console.* API							**
